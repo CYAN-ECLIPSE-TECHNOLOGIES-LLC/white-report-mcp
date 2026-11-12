@@ -19,6 +19,15 @@ This repository contains the public listing metadata (`server.json`, `glama.json
 | `get_article` | Full machine-readable article (the JSON twin: facts, sources, call, full text). Requires `slug`. |
 | `get_ticker` | Market snapshot: crypto top 5, AI stocks, and metrics, with the snapshot timestamp. |
 | `get_scoreboard` | Every dated public call The White Report has made, its grade date, and its grade (`null` while pending). |
+| `calls_list` | Machine format (`wr.calls.v1`): sealed per-call envelopes from the graded-calls ledger, with optional `state` / `asset` filters. |
+| `calls_get` | Machine format (`wr.calls.v1`): the full sealed envelope for one `call_id`. |
+| `calls_since` | Machine format (`wr.calls.v1`): call envelopes with `published_at` after an ISO-8601 UTC timestamp. |
+| `event_briefs_list` | Machine format (`wr.event.v1`): the scheduled-event coverage calendar and brief index. |
+| `event_brief_get` | Machine format (`wr.event.v1`): one sealed event brief envelope by `id` (optional `version`, default latest). |
+| `telemetry_latest` | Machine format (`wr.telemetry.v1`): the latest sealed compile envelope per telemetry metric (optional `metric` filter). |
+| `telemetry_series` | Machine format (`wr.telemetry.v1`): every sealed compile envelope for one `metric`, oldest first. |
+
+Naming note (2026-11-12, TDQS cure): the tool names mix conventions by family — article tools are verb-first (`get_*`, `search_articles`), machine-format families are family-first (`calls_*`, `event_briefs_*`/`event_brief_get`, `telemetry_*`, mirroring their `wr.*.v1` format ids). The names are a live public contract (referenced by the site's agent setup instructions and external clients), so they were **not** renamed; instead each tool's description now names its family, its siblings, and its distinct job. A rename, if ever done, needs a versioned endpoint with an old→new mapping and a deprecation window.
 
 ## Connect
 
